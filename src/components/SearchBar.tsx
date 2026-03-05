@@ -56,7 +56,7 @@ export default function SearchBar() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           placeholder="Search stems, creators..."
-          className="w-full bg-surface border border-border rounded-lg pl-10 pr-8 py-2.5 text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-pink-500/50 transition-colors"
+          className="w-full bg-surface border border-border rounded-lg pl-10 pr-8 py-2.5 text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-black transition-colors"
         />
         {query && (
           <button
@@ -90,8 +90,8 @@ export default function SearchBar() {
                         onClick={() => { setQuery(''); setIsFocused(false); }}
                         className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-surface-hover transition-colors"
                       >
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500/20 to-violet-500/20 flex items-center justify-center">
-                          <User className="w-4 h-4 text-pink-400" />
+                        <div className="w-8 h-8 rounded-full bg-neutral-200 flex items-center justify-center">
+                          <User className="w-4 h-4 text-neutral-800" />
                         </div>
                         <div>
                           <p className="text-sm font-medium">{c.name}</p>
@@ -112,7 +112,7 @@ export default function SearchBar() {
                         onClick={() => { setQuery(''); setIsFocused(false); }}
                         className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-surface-hover transition-colors"
                       >
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500/10 to-violet-500/10 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full bg-neutral-200 flex items-center justify-center">
                           <Music className="w-4 h-4 text-muted" />
                         </div>
                         <div className="flex-1 min-w-0">

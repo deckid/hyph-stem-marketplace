@@ -9,7 +9,7 @@ export default function AboutPage() {
       icon: <Heart className="w-6 h-6" />,
       title: 'Made by Humans',
       description:
-        'Every stem on Hyph is crafted by a real person with a real story. No AI-generated filler — just authentic creative expression from artists who pour their soul into every note.',
+        'Every stem on KASHKAT is crafted by a real person with a real story. No AI-generated filler — just authentic creative expression from artists who pour their soul into every note.',
     },
     {
       icon: <Globe className="w-6 h-6" />,
@@ -40,12 +40,12 @@ export default function AboutPage() {
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Music is{' '}
-          <span className="bg-gradient-to-r from-pink-400 to-violet-500 bg-clip-text text-transparent">
+          <span className="text-foreground font-bold">
             human
           </span>
         </h1>
         <p className="text-lg text-muted max-w-2xl mx-auto">
-          Hyph exists because we believe the best music is made when talented
+          KASHKAT exists because we believe the best music is made when talented
           creators connect with passionate producers. Every stem tells a story.
         </p>
       </motion.div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
             transition={{ delay: i * 0.1 }}
             className="p-6 rounded-xl bg-surface border border-border"
           >
-            <div className="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-xl bg-neutral-100 text-foreground flex items-center justify-center mb-4">
               {value.icon}
             </div>
             <h3 className="font-semibold text-lg mb-2">{value.title}</h3>
@@ -73,7 +73,7 @@ export default function AboutPage() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="p-8 rounded-2xl bg-gradient-to-br from-pink-500/10 to-violet-500/10 border border-pink-500/20 text-center"
+        className="p-8 rounded-2xl bg-[#D4CFC5]/20 border border-border text-center"
       >
         <h2 className="text-2xl font-bold mb-3">Our Mission</h2>
         <p className="text-muted max-w-xl mx-auto leading-relaxed">

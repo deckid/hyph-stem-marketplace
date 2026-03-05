@@ -10,7 +10,7 @@ const instrumentColors: Record<string, string> = {
   bass: '#3b82f6',
   guitar: '#f59e0b',
   keys: '#8b5cf6',
-  synth: '#ec4899',
+  synth: '#4A4540',
   vocals: '#f43f5e',
   strings: '#10b981',
   brass: '#eab308',
@@ -91,7 +91,7 @@ export default function CartDrawer() {
                     >
                       <div
                         className="w-2 h-8 rounded-full"
-                        style={{ backgroundColor: instrumentColors[item.instrument] || '#ec4899' }}
+                        style={{ backgroundColor: instrumentColors[item.instrument] || '#4A4540' }}
                       />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{item.title}</p>

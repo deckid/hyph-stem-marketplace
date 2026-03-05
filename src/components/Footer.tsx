@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <Image src="/logo.png" alt="Hyph" width={80} height={32} className="h-8 w-auto" />
+              <Image src="/kashkat-logo.jpeg" alt="KASHKAT" width={80} height={32} className="h-8 w-auto" />
             </div>
             <p className="text-sm text-muted">
               Premium audio stems crafted by independent creators worldwide.
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted">
-          &copy; {new Date().getFullYear()} Hyph. All rights reserved. Made with love for music.
+          &copy; {new Date().getFullYear()} KASHKAT. All rights reserved. Made with love for music.
         </div>
       </div>
     </footer>

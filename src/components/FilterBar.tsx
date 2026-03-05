@@ -80,7 +80,7 @@ function FilterSelect({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground pr-8 focus:outline-none focus:border-pink-500/50 transition-colors"
+          className="w-full appearance-none bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground pr-8 focus:outline-none focus:border-black transition-colors"
         >
           {options.map((opt) => {
             const val = typeof opt === 'string' ? opt : opt.value;
@@ -120,7 +120,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
       <div className="flex items-center gap-3">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-border hover:border-pink-500/30 transition-all text-sm"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-border hover:border-neutral-600 transition-all text-sm"
         >
           <SlidersHorizontal className="w-4 h-4" />
           Filters
@@ -192,7 +192,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
                   max="180"
                   value={filters.bpmMin}
                   onChange={(e) => update('bpmMin', parseInt(e.target.value))}
-                  className="w-full accent-pink-500"
+                  className="w-full accent-neutral-800"
                 />
               </div>
               <div className="space-y-1">
@@ -203,7 +203,7 @@ export default function FilterBar({ filters, onFilterChange }: FilterBarProps) {
                   max="180"
                   value={filters.bpmMax}
                   onChange={(e) => update('bpmMax', parseInt(e.target.value))}
-                  className="w-full accent-pink-500"
+                  className="w-full accent-neutral-800"
                 />
               </div>
             </div>

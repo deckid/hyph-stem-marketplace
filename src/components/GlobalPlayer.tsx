@@ -85,7 +85,7 @@ export default function GlobalPlayer() {
               step="0.01"
               value={volume}
               onChange={(e) => setVolume(parseFloat(e.target.value))}
-              className="w-20 accent-pink-500"
+              className="w-20 accent-neutral-800"
             />
           </div>
 

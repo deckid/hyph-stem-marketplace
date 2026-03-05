@@ -11,8 +11,8 @@ import SearchBar from '@/components/SearchBar';
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-pink-500/5 via-transparent to-transparent" />
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-[120px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-500/5 via-transparent to-transparent" />
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-neutral-500/5 rounded-full blur-[120px]" />
 
       <div className="relative max-w-7xl mx-auto px-4 pt-24 pb-20 text-center">
         <motion.div
@@ -20,33 +20,33 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 border border-border text-foreground text-sm mb-6">
             <Sparkles className="w-4 h-4" />
-            300+ premium stems from 30 creators
+            300+ stems from 30 creators. The real deal.
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            Your music,{' '}
-            <span className="bg-gradient-to-r from-pink-400 via-pink-500 to-violet-500 bg-clip-text text-transparent">
-              amplified
+            Stems for{' '}
+            <span className="text-foreground font-bold">
+              the cool cats
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-8">
-            Premium audio stems crafted by independent creators worldwide.
+            No label nonsense. Independent stems from real creators worldwide.
             Mix, match, and make music your way — starting at $0.33 per stem.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <Link
               href="/browse"
-              className="px-8 py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-medium transition-all hover:shadow-lg hover:shadow-pink-500/25 flex items-center gap-2"
+              className="px-8 py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-medium transition-all hover:shadow-[4px_4px_0_#0A0A0A] flex items-center gap-2"
             >
               Browse Stems <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/about"
-              className="px-8 py-3 rounded-xl border border-border hover:border-pink-500/30 text-foreground font-medium transition-all"
+              className="px-8 py-3 rounded-xl border border-border hover:border-neutral-600 text-foreground font-medium transition-all"
             >
               Learn More
             </Link>
@@ -129,7 +129,7 @@ function HowItWorks() {
             transition={{ delay: i * 0.15 }}
             className="p-6 rounded-xl bg-surface border border-border text-center"
           >
-            <div className="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-xl bg-neutral-100 text-foreground flex items-center justify-center mx-auto mb-4">
               {step.icon}
             </div>
             <h3 className="font-semibold mb-2">{step.title}</h3>
@@ -164,17 +164,17 @@ function CreatorSpotlight() {
           >
             <Link
               href={`/creator/${creator.slug}`}
-              className="block p-6 rounded-xl bg-surface border border-border hover:border-pink-500/30 transition-all group"
+              className="block p-6 rounded-xl bg-surface border border-border hover:border-neutral-600 transition-all group"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500/20 to-violet-500/20 flex items-center justify-center mb-4">
-                <Users className="w-8 h-8 text-pink-400 group-hover:scale-110 transition-transform" />
+              <div className="w-16 h-16 rounded-full bg-[#D4CFC5]/20 flex items-center justify-center mb-4">
+                <Users className="w-8 h-8 text-foreground group-hover:scale-110 transition-transform" />
               </div>
               <h3 className="font-semibold mb-1">{creator.name}</h3>
               <p className="text-xs text-muted mb-2">{creator.location}</p>
               <p className="text-sm text-muted line-clamp-2">{creator.bio}</p>
               <div className="flex flex-wrap gap-1 mt-3">
                 {creator.genres.slice(0, 2).map((g) => (
-                  <span key={g} className="px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-400 text-[10px]">
+                  <span key={g} className="px-2 py-0.5 rounded-full bg-neutral-100 text-foreground text-[10px]">
                     {g}
                   </span>
                 ))}
@@ -209,13 +209,13 @@ function Pricing() {
             key={tier.stems}
             className={`p-4 rounded-xl border text-center ${
               tier.highlight
-                ? 'bg-pink-500/10 border-pink-500/30 ring-1 ring-pink-500/20'
+                ? 'bg-neutral-100 border-neutral-600 ring-1 ring-neutral-400/20'
                 : 'bg-surface border-border'
             }`}
           >
             <div className="text-2xl font-bold mb-1">{tier.stems}</div>
             <div className="text-xs text-muted mb-2">stems</div>
-            <div className="text-lg font-semibold text-pink-400">{tier.perStem}</div>
+            <div className="text-lg font-semibold text-foreground">{tier.perStem}</div>
             {tier.discount && <div className="text-xs text-emerald-400 mt-1">{tier.discount}</div>}
           </div>
         ))}

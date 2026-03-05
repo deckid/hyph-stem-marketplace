@@ -47,7 +47,7 @@ function speakWatermark() {
   // Cancel any in-progress speech to avoid overlap
   window.speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance('Hyph');
+  const utterance = new SpeechSynthesisUtterance('Kashkat');
   utterance.rate = 0.9;
   utterance.pitch = 0.6;
   utterance.volume = 0.5;

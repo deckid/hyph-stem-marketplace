@@ -42,10 +42,10 @@ export default function StemDetailPage() {
 
   const instrumentColors: Record<string, string> = {
     drums: '#f97316', bass: '#3b82f6', guitar: '#f59e0b', keys: '#8b5cf6',
-    synth: '#ec4899', vocals: '#f43f5e', strings: '#10b981', brass: '#eab308',
+    synth: '#4A4540', vocals: '#f43f5e', strings: '#10b981', brass: '#eab308',
     woodwinds: '#14b8a6', percussion: '#ef4444', fx: '#7c3aed', pad: '#06b6d4',
   };
-  const color = instrumentColors[stem.instrument] || '#ec4899';
+  const color = instrumentColors[stem.instrument] || '#4A4540';
 
   const handlePlayPause = () => {
     if (isCurrentStem && isPlaying) pause();
@@ -85,7 +85,7 @@ export default function StemDetailPage() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-pink-400">${stem.price.toFixed(2)}</div>
+                <div className="text-3xl font-bold text-foreground">${stem.price.toFixed(2)}</div>
                 <div className="text-xs text-muted">per stem</div>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function StemDetailPage() {
               <button
                 onClick={handleAddToCart}
                 className={`px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all ${
-                  isInCart ? 'bg-pink-500/20 text-pink-400 border border-pink-500/30' : 'bg-surface-hover border border-border hover:border-pink-500/30'
+                  isInCart ? 'bg-neutral-100 text-foreground border border-neutral-600' : 'bg-surface-hover border border-border hover:border-neutral-600'
                 }`}
               >
                 <ShoppingCart className="w-4 h-4" />
@@ -158,20 +158,20 @@ export default function StemDetailPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           <Link
             href={`/creator/${creator.slug}`}
-            className="block p-6 rounded-2xl bg-surface border border-border hover:border-pink-500/30 transition-all group"
+            className="block p-6 rounded-2xl bg-surface border border-border hover:border-neutral-600 transition-all group"
           >
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500/20 to-violet-500/20 flex items-center justify-center mb-4">
-              <User className="w-10 h-10 text-pink-400" />
+            <div className="w-20 h-20 rounded-full bg-[#D4CFC5]/20 flex items-center justify-center mb-4">
+              <User className="w-10 h-10 text-foreground" />
             </div>
             <div className="flex items-center gap-2 mb-2">
               <h3 className="text-lg font-semibold">{creator.name}</h3>
-              {creator.verified && <BadgeCheck className="w-4 h-4 text-pink-400" />}
+              {creator.verified && <BadgeCheck className="w-4 h-4 text-foreground" />}
             </div>
             <p className="text-xs text-muted mb-3">{creator.location}</p>
             <p className="text-sm text-muted">{creator.bio}</p>
             <div className="flex flex-wrap gap-1 mt-3">
               {creator.genres.map((g) => (
-                <span key={g} className="px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-400 text-[10px]">
+                <span key={g} className="px-2 py-0.5 rounded-full bg-neutral-100 text-foreground text-[10px]">
                   {g}
                 </span>
               ))}

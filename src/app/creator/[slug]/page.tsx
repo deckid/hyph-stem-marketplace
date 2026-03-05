@@ -48,14 +48,14 @@ export default function CreatorPage() {
         className="p-8 rounded-2xl bg-surface border border-border mb-8"
       >
         <div className="flex flex-col md:flex-row items-start gap-6">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-pink-500/20 to-violet-500/20 flex items-center justify-center flex-shrink-0">
-            <User className="w-12 h-12 text-pink-400" />
+          <div className="w-24 h-24 rounded-full bg-[#D4CFC5]/20 flex items-center justify-center flex-shrink-0">
+            <User className="w-12 h-12 text-foreground" />
           </div>
 
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <h1 className="text-3xl font-bold">{creator.name}</h1>
-              {creator.verified && <BadgeCheck className="w-5 h-5 text-pink-400" />}
+              {creator.verified && <BadgeCheck className="w-5 h-5 text-foreground" />}
             </div>
 
             <div className="flex items-center gap-4 text-sm text-muted mb-4">
@@ -73,7 +73,7 @@ export default function CreatorPage() {
               {creator.genres.map((g) => (
                 <span
                   key={g}
-                  className="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-sm"
+                  className="px-3 py-1 rounded-full bg-neutral-100 text-foreground text-sm"
                 >
                   {g}
                 </span>

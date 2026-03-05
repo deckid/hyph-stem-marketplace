@@ -17,9 +17,9 @@ export default function SuccessPage() {
         </div>
 
         <div className="flex items-center justify-center gap-2 mb-4">
-          <PartyPopper className="w-6 h-6 text-pink-400" />
+          <PartyPopper className="w-6 h-6 text-foreground" />
           <h1 className="text-3xl font-bold">Purchase Complete!</h1>
-          <PartyPopper className="w-6 h-6 text-pink-400" />
+          <PartyPopper className="w-6 h-6 text-foreground" />
         </div>
 
         <p className="text-muted mb-8 max-w-md mx-auto">
@@ -51,7 +51,7 @@ export default function SuccessPage() {
           </Link>
           <Link
             href="/"
-            className="px-8 py-3 rounded-xl border border-border hover:border-pink-500/30 font-medium transition-all"
+            className="px-8 py-3 rounded-xl border border-border hover:border-neutral-600 font-medium transition-all"
           >
             Back Home
           </Link>

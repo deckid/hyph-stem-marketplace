@@ -90,7 +90,7 @@ export default function CheckoutPage() {
             )}
             <div className="flex justify-between text-lg font-bold pt-2 border-t border-border">
               <span>Total</span>
-              <span className="text-pink-400">${total.toFixed(2)}</span>
+              <span className="text-foreground font-bold">${total.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -110,20 +110,20 @@ export default function CheckoutPage() {
               type="text"
               placeholder="Card number"
               defaultValue="4242 4242 4242 4242"
-              className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+              className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-600"
             />
             <div className="grid grid-cols-2 gap-3">
               <input
                 type="text"
                 placeholder="MM/YY"
                 defaultValue="12/28"
-                className="bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+                className="bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-600"
               />
               <input
                 type="text"
                 placeholder="CVC"
                 defaultValue="123"
-                className="bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+                className="bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-neutral-600"
               />
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function CheckoutPage() {
         <button
           onClick={handleCheckout}
           disabled={loading}
-          className="w-full py-4 rounded-xl bg-accent hover:bg-accent-hover text-white font-medium transition-all hover:shadow-lg hover:shadow-pink-500/25 flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full py-4 rounded-xl bg-accent hover:bg-accent-hover text-white font-medium transition-all hover:shadow-[4px_4px_0_#0A0A0A] flex items-center justify-center gap-2 disabled:opacity-50"
         >
           <Lock className="w-4 h-4" />
           {loading ? 'Processing...' : `Pay $${total.toFixed(2)}`}

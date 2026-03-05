@@ -19,7 +19,7 @@ const instrumentColors: Record<string, string> = {
   bass: '#3b82f6',
   guitar: '#f59e0b',
   keys: '#8b5cf6',
-  synth: '#ec4899',
+  synth: '#4A4540',
   vocals: '#f43f5e',
   strings: '#10b981',
   brass: '#eab308',
@@ -36,7 +36,7 @@ export default function StemCard({ stem, creator, index = 0 }: StemCardProps) {
 
   const isCurrentStem = currentStem?.id === stem.id;
   const isInCart = items.some((item) => item.stemId === stem.id);
-  const color = instrumentColors[stem.instrument] || '#ec4899';
+  const color = instrumentColors[stem.instrument] || '#4A4540';
 
   const handlePlayPause = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -81,7 +81,7 @@ export default function StemCard({ stem, creator, index = 0 }: StemCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group relative bg-surface rounded-xl border border-border p-4 hover:border-pink-500/30 hover:bg-surface-hover transition-all duration-300"
+      className="group relative bg-surface rounded-xl border border-border p-4 hover:border-neutral-600 hover:bg-surface-hover transition-all duration-300"
     >
       {isCurrentStem && isPlaying && (
         <div className="absolute inset-0 rounded-xl animate-glow-pulse pointer-events-none" />
@@ -119,7 +119,7 @@ export default function StemCard({ stem, creator, index = 0 }: StemCardProps) {
           onClick={handleAddToCart}
           className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 ${
             isInCart
-              ? 'bg-pink-500/20 text-pink-400'
+              ? 'bg-neutral-200 text-neutral-800'
               : 'bg-surface-hover text-muted hover:text-foreground hover:bg-border'
           }`}
         >
@@ -157,7 +157,7 @@ export default function StemCard({ stem, creator, index = 0 }: StemCardProps) {
             <Clock className="w-3 h-3" />
             {formatDuration(stem.duration)}
           </span>
-          <span className="text-pink-400 font-medium">${stem.price.toFixed(2)}</span>
+          <span className="text-foreground font-bold">${stem.price.toFixed(2)}</span>
         </div>
       </div>
     </motion.div>

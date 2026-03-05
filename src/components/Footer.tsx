@@ -7,9 +7,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Image src="/logo.png" alt="Hyph" width={32} height={32} className="rounded-lg" />
-              <span className="font-bold text-lg">Hyph</span>
+            <div className="flex items-center mb-4">
+              <Image src="/logo.png" alt="Hyph" width={80} height={32} className="h-8 w-auto" />
             </div>
             <p className="text-sm text-muted">
               Premium audio stems crafted by independent creators worldwide.

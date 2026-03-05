@@ -20,9 +20,8 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Hyph" width={32} height={32} className="rounded-lg" />
-          <span className="font-bold text-lg tracking-tight">Hyph</span>
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.png" alt="Hyph" width={80} height={32} className="h-8 w-auto" />
         </Link>
 
         {/* Desktop nav */}

@@ -27,7 +27,6 @@ interface PlayerStore {
 
 let progressInterval: ReturnType<typeof setInterval> | null = null;
 let watermarkInterval: ReturnType<typeof setInterval> | null = null;
-let audioContext: AudioContext | null = null;
 
 function clearProgressInterval() {
   if (progressInterval !== null) {
@@ -43,52 +42,38 @@ function clearWatermarkInterval() {
   }
 }
 
-function playWatermarkTone() {
-  if (typeof window === 'undefined') return;
-  if (!audioContext) {
-    audioContext = new AudioContext();
-  }
-  if (audioContext.state === 'suspended') {
-    audioContext.resume();
-  }
+function speakWatermark() {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  // Cancel any in-progress speech to avoid overlap
+  window.speechSynthesis.cancel();
 
-  const now = audioContext.currentTime;
-  const gain = audioContext.createGain();
-  gain.connect(audioContext.destination);
-  gain.gain.setValueAtTime(0.15, now);
-  gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+  const utterance = new SpeechSynthesisUtterance('Hyph');
+  utterance.rate = 0.9;
+  utterance.pitch = 0.6;
+  utterance.volume = 0.5;
 
-  // First tone
-  const osc1 = audioContext.createOscillator();
-  osc1.type = 'sine';
-  osc1.frequency.setValueAtTime(880, now);
-  osc1.connect(gain);
-  osc1.start(now);
-  osc1.stop(now + 0.15);
+  // Prefer a robotic/English voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(
+    (v) => v.name.includes('Samantha') || v.name.includes('Google') || v.name.includes('Daniel')
+  );
+  if (preferred) utterance.voice = preferred;
 
-  // Second tone (slight delay)
-  const gain2 = audioContext.createGain();
-  gain2.connect(audioContext.destination);
-  gain2.gain.setValueAtTime(0.12, now + 0.18);
-  gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
-
-  const osc2 = audioContext.createOscillator();
-  osc2.type = 'sine';
-  osc2.frequency.setValueAtTime(1320, now + 0.18);
-  osc2.connect(gain2);
-  osc2.start(now + 0.18);
-  osc2.stop(now + 0.35);
+  window.speechSynthesis.speak(utterance);
 }
 
 function startWatermark() {
   clearWatermarkInterval();
-  // Play immediately, then every 8 seconds
-  playWatermarkTone();
-  watermarkInterval = setInterval(playWatermarkTone, 8000);
+  // Speak immediately, then every 8 seconds
+  speakWatermark();
+  watermarkInterval = setInterval(speakWatermark, 8000);
 }
 
 function stopWatermark() {
   clearWatermarkInterval();
+  if (typeof window !== 'undefined' && window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+  }
 }
 
 function startProgressInterval(get: () => PlayerStore, set: (partial: Partial<PlayerStore>) => void) {

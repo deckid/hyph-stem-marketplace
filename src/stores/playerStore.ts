@@ -26,12 +26,69 @@ interface PlayerStore {
 }
 
 let progressInterval: ReturnType<typeof setInterval> | null = null;
+let watermarkInterval: ReturnType<typeof setInterval> | null = null;
+let audioContext: AudioContext | null = null;
 
 function clearProgressInterval() {
   if (progressInterval !== null) {
     clearInterval(progressInterval);
     progressInterval = null;
   }
+}
+
+function clearWatermarkInterval() {
+  if (watermarkInterval !== null) {
+    clearInterval(watermarkInterval);
+    watermarkInterval = null;
+  }
+}
+
+function playWatermarkTone() {
+  if (typeof window === 'undefined') return;
+  if (!audioContext) {
+    audioContext = new AudioContext();
+  }
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+
+  const now = audioContext.currentTime;
+  const gain = audioContext.createGain();
+  gain.connect(audioContext.destination);
+  gain.gain.setValueAtTime(0.15, now);
+  gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+
+  // First tone
+  const osc1 = audioContext.createOscillator();
+  osc1.type = 'sine';
+  osc1.frequency.setValueAtTime(880, now);
+  osc1.connect(gain);
+  osc1.start(now);
+  osc1.stop(now + 0.15);
+
+  // Second tone (slight delay)
+  const gain2 = audioContext.createGain();
+  gain2.connect(audioContext.destination);
+  gain2.gain.setValueAtTime(0.12, now + 0.18);
+  gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+
+  const osc2 = audioContext.createOscillator();
+  osc2.type = 'sine';
+  osc2.frequency.setValueAtTime(1320, now + 0.18);
+  osc2.connect(gain2);
+  osc2.start(now + 0.18);
+  osc2.stop(now + 0.35);
+}
+
+function startWatermark() {
+  clearWatermarkInterval();
+  // Play immediately, then every 8 seconds
+  playWatermarkTone();
+  watermarkInterval = setInterval(playWatermarkTone, 8000);
+}
+
+function stopWatermark() {
+  clearWatermarkInterval();
 }
 
 function startProgressInterval(get: () => PlayerStore, set: (partial: Partial<PlayerStore>) => void) {
@@ -64,6 +121,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
       currentHowl.play();
       set({ isPlaying: true });
       startProgressInterval(get, set);
+      startWatermark();
       return;
     }
 
@@ -84,28 +142,34 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         const duration = howl.duration();
         set({ isPlaying: true, duration });
         startProgressInterval(get, set);
+        startWatermark();
       },
       onpause: () => {
         set({ isPlaying: false });
         clearProgressInterval();
+        stopWatermark();
       },
       onstop: () => {
         set({ isPlaying: false, progress: 0 });
         clearProgressInterval();
+        stopWatermark();
       },
       onend: () => {
         set({ isPlaying: false, progress: 1 });
         clearProgressInterval();
+        stopWatermark();
       },
       onloaderror: (_id: number, error: unknown) => {
         console.error('Failed to load audio:', audioPath, error);
         set({ isPlaying: false });
         clearProgressInterval();
+        stopWatermark();
       },
       onplayerror: (_id: number, error: unknown) => {
         console.error('Failed to play audio:', audioPath, error);
         set({ isPlaying: false });
         clearProgressInterval();
+        stopWatermark();
       },
     });
 
@@ -124,6 +188,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     if (howl) {
       howl.pause();
     }
+    stopWatermark();
   },
 
   resume: () => {
@@ -131,6 +196,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     if (howl) {
       howl.play();
     }
+    startWatermark();
   },
 
   stop: () => {
@@ -140,6 +206,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
       howl.unload();
     }
     clearProgressInterval();
+    stopWatermark();
     set({
       currentStem: null,
       howl: null,

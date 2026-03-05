@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import StemCard from './StemCard';
+import EditorialCard, { getEditorialItems } from './EditorialCard';
 import type { Stem, Creator } from '@/data/types';
 
 interface StemGridProps {
@@ -19,6 +20,24 @@ export default function StemGrid({ stems, creators }: StemGridProps) {
     );
   }
 
+  const editorials = getEditorialItems();
+
+  // Interleave: 1 editorial after every 1 stem card (50/50 ratio)
+  const items: { type: 'stem' | 'editorial'; index: number }[] = [];
+  let stemIdx = 0;
+  let edIdx = 0;
+
+  while (stemIdx < stems.length) {
+    items.push({ type: 'stem', index: stemIdx });
+    stemIdx++;
+
+    // Insert an editorial card after each stem (if we have editorial content left, cycle through)
+    if (edIdx < editorials.length || editorials.length > 0) {
+      items.push({ type: 'editorial', index: edIdx % editorials.length });
+      edIdx++;
+    }
+  }
+
   return (
     <motion.div
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
@@ -29,14 +48,22 @@ export default function StemGrid({ stems, creators }: StemGridProps) {
         visible: { transition: { staggerChildren: 0.05 } },
       }}
     >
-      {stems.map((stem, index) => (
-        <StemCard
-          key={stem.id}
-          stem={stem}
-          creator={creators[stem.creatorId]}
-          index={index}
-        />
-      ))}
+      {items.map((item, i) =>
+        item.type === 'stem' ? (
+          <StemCard
+            key={`stem-${stems[item.index].id}`}
+            stem={stems[item.index]}
+            creator={creators[stems[item.index].creatorId]}
+            index={i}
+          />
+        ) : (
+          <EditorialCard
+            key={`ed-${editorials[item.index].id}-${i}`}
+            item={editorials[item.index]}
+            index={i}
+          />
+        )
+      )}
     </motion.div>
   );
 }

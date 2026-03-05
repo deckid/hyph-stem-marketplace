@@ -13,7 +13,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <PasswordGate>
       <Navbar />
-      <main className={`pt-16 ${currentStem ? 'pb-20' : ''}`}>{children}</main>
+      <main className={`pt-20 ${currentStem ? 'pb-20' : ''}`}>{children}</main>
       <Footer />
       <GlobalPlayer />
       <CartDrawer />

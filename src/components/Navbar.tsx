@@ -19,9 +19,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <Image src="/kashkat-logo.jpeg" alt="KASHKAT" width={80} height={32} className="h-8 w-auto" />
+          <Image src="/kashkat-logo.jpeg" alt="KASHKAT" width={160} height={64} className="h-14 w-auto" />
         </Link>
 
         {/* Desktop nav */}

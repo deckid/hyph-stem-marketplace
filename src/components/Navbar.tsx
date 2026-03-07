@@ -6,6 +6,7 @@ import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useCartStore } from '@/stores/cartStore';
 import { motion, AnimatePresence } from 'framer-motion';
+import StreakTracker from './conversion/StreakTracker';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,6 +39,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <StreakTracker />
           <button
             onClick={toggleCart}
             className="relative w-10 h-10 rounded-lg flex items-center justify-center text-muted hover:text-foreground hover:bg-surface-hover transition-all"

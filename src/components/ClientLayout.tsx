@@ -5,6 +5,10 @@ import Footer from './Footer';
 import GlobalPlayer from './GlobalPlayer';
 import CartDrawer from './CartDrawer';
 import PasswordGate from './PasswordGate';
+import SpinWheelController from './conversion/SpinWheelController';
+import CreditBanner from './conversion/CreditBanner';
+import BundleUpsell from './conversion/BundleUpsell';
+import FlashPackBanner from './conversion/FlashPackBanner';
 import { usePlayerStore } from '@/stores/playerStore';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -12,11 +16,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <PasswordGate>
+      <CreditBanner />
       <Navbar />
       <main className={`pt-16 ${currentStem ? 'pb-20' : ''}`}>{children}</main>
       <Footer />
       <GlobalPlayer />
       <CartDrawer />
+      <SpinWheelController />
+      <BundleUpsell />
+      <FlashPackBanner />
     </PasswordGate>
   );
 }

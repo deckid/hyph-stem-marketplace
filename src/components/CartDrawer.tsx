@@ -4,6 +4,7 @@ import { X, Trash2, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/stores/cartStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import CheckoutProgress from './conversion/CheckoutProgress';
 
 const instrumentColors: Record<string, string> = {
   drums: '#f97316',
@@ -113,6 +114,7 @@ export default function CartDrawer() {
             {/* Footer */}
             {items.length > 0 && (
               <div className="border-t border-border p-4 space-y-3">
+                <CheckoutProgress />
                 {/* Tier info */}
                 {discount > 0 && (
                   <div className="flex items-center justify-between text-sm">

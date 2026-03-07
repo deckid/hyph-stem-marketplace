@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
+import { issuePostPurchaseCredit } from '@/lib/credits';
 
 export async function POST(request: Request) {
-  const { items } = await request.json();
+  const { items, sessionId: clientSessionId } = await request.json();
 
   // Mock Stripe checkout session
   const sessionId = 'mock_session_' + Math.random().toString(36).substring(7);
@@ -15,6 +16,11 @@ export async function POST(request: Request) {
   else if (count >= 3) perStem = 0.75;
 
   const total = (count * perStem).toFixed(2);
+
+  // Issue post-purchase 99c credit (expires in 48h)
+  if (clientSessionId) {
+    await issuePostPurchaseCredit(clientSessionId);
+  }
 
   return NextResponse.json({
     sessionId,

@@ -1,10 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Download, ArrowRight, PartyPopper } from 'lucide-react';
+import { CheckCircle, Download, ArrowRight, PartyPopper, Share2 } from 'lucide-react';
 import Link from 'next/link';
+import ShareCard from '@/components/conversion/ShareCard';
+import ReferralCard from '@/components/conversion/ReferralCard';
 
 export default function SuccessPage() {
+  const [showShareCard, setShowShareCard] = useState(false);
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-20 text-center">
       <motion.div
@@ -22,15 +27,22 @@ export default function SuccessPage() {
           <PartyPopper className="w-6 h-6 text-pink-400" />
         </div>
 
-        <p className="text-muted mb-8 max-w-md mx-auto">
+        <p className="text-muted mb-4 max-w-md mx-auto">
           Your stems are ready to download. Time to make something incredible.
         </p>
+
+        {/* Credit earned notice */}
+        <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 mb-8 max-w-md mx-auto">
+          <p className="text-xs text-emerald-400 font-medium">
+            You earned a $0.99 credit! Use it within 48 hours.
+          </p>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="p-6 rounded-2xl bg-surface border border-border mb-8"
+          className="p-6 rounded-2xl bg-surface border border-border mb-6"
         >
           <h2 className="font-semibold mb-4">Your Downloads</h2>
           <p className="text-sm text-muted mb-4">
@@ -40,6 +52,32 @@ export default function SuccessPage() {
             <Download className="w-4 h-4" />
             Download All (Demo)
           </button>
+        </motion.div>
+
+        {/* Share card CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mb-6"
+        >
+          <button
+            onClick={() => setShowShareCard(true)}
+            className="px-6 py-3 rounded-xl bg-surface border border-border hover:border-accent/30 font-medium transition-all flex items-center gap-2 mx-auto text-sm"
+          >
+            <Share2 className="w-4 h-4 text-accent" />
+            Share &quot;I Just Copped&quot; Card
+          </button>
+        </motion.div>
+
+        {/* Referral card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mb-8 text-left max-w-md mx-auto"
+        >
+          <ReferralCard />
         </motion.div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -57,6 +95,16 @@ export default function SuccessPage() {
           </Link>
         </div>
       </motion.div>
+
+      {showShareCard && (
+        <ShareCard
+          stemName="Midnight 808"
+          genre="Hip-Hop"
+          bpm={140}
+          stemKey="Cm"
+          onClose={() => setShowShareCard(false)}
+        />
+      )}
     </div>
   );
 }

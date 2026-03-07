@@ -18,10 +18,13 @@ export default function CheckoutPage() {
   const handleCheckout = async () => {
     setLoading(true);
     try {
+      const sessionId = typeof window !== 'undefined'
+        ? localStorage.getItem('hyph_session_id') || ''
+        : '';
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
+        body: JSON.stringify({ items, sessionId }),
       });
       const data = await res.json();
       clearCart();
